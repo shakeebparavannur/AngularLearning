@@ -1,8 +1,45 @@
-<div>
+<!-- <div>
     <h1>Data from API</h1>
     <ul>
-      <li *ngFor="let e of products">{{ e["title"] }}</li>
-      <!-- Replace "propertyName" with the actual property name from your API response -->
+      <li *ngFor="let e of products">{{ e.title }}</li>
+ 
     </ul>
-  </div>
+  </div> -->
   
+  <!-- <div>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>title</th>
+        <th>price</th>
+        <th>brand</th>
+      </tr>
+      <tr *ngFor="let e of products">
+        <td>{{e.id}}</td>
+        <td>{{e.title}}</td>
+        <td>{{e.price}}</td>
+        <td>{{e.brand}}</td>
+      </tr>
+    </table>
+  </div> -->
+  <table mat-table [dataSource]="products">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let product">{{product.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>title</th>
+      <td mat-cell *matCellDef="let product">{{product.title}}</td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let product">{{product.price}}</td>
+    </ng-container>
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef>Brand</th>
+      <td mat-cell *matCellDef="let product">{{product.brand}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+    <tr mat-row *matRowDef="let product;columns:tableHeaders"></tr>
+  </table>

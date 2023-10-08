@@ -8,10 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit {
   public apiData: any;
-  products = [];
-  /**
-   *
-   */
+  public products:any[] = [];
+  tableHeaders:string[] =['id','title','price','brand']
+
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
     const apiUrl = `https://dummyjson.com/products`;
