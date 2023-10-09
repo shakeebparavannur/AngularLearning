@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import axios from 'axios';
 
 @Component({
   selector: 'app-products',
@@ -12,13 +13,17 @@ export class ProductsComponent implements OnInit {
   tableHeaders:string[] =['id','title','price','brand']
 
   constructor(private http: HttpClient) {}
-  ngOnInit(): void {
+ async ngOnInit () {
     const apiUrl = `https://dummyjson.com/products`;
-    this.http.get(apiUrl).subscribe((data) => {
-      this.apiData = data;
-      console.log(data);
-      this.products = this.apiData.products      ;
-      console.log(data, 'sadasdasd');
-    });
+ 
+    const prod= await axios.get(apiUrl);
+    console.log(prod.data.products);
+    this.products = prod.data.products;
   }
 }
+   // this.http.get(apiUrl).subscribe((data) => {
+    //   this.apiData = data;
+    //   console.log(data);
+    //   this.products = this.apiData.products      ;
+    //   console.log(data, 'sadasdasd');
+    // });
